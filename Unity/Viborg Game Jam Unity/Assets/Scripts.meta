@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< refs/remotes/origin/master
 guid: 3655fb85ef3476a47aea5c2a29326f56
+=======
+guid: 8254af4d182700c488dfc46fa101f4d7
+>>>>>>> Mirror rotation
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
