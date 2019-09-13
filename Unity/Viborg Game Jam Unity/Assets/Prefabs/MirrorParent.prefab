@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4823816359032140397}
   - component: {fileID: 4823816359032140306}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4823816359038589739}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MirrorTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4823816359095630913}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MirrorParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 4823816359599066713}
   - component: {fileID: 4823816359599066718}
   - component: {fileID: 4823816359599066719}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
