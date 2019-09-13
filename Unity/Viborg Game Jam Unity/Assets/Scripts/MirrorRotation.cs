@@ -9,6 +9,7 @@ public class MirrorRotation : MonoBehaviour
 
     public Transform targetTransform;
 
+    public bool selected;
     bool rotating;
     float rotationProgress;
 
@@ -21,12 +22,12 @@ public class MirrorRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && !rotating)
+        if(Input.GetKeyDown(KeyCode.E) && !rotating && selected)
         {
             targetTransform.Rotate(transform.up, 45f);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && !rotating)
+        if (Input.GetKeyDown(KeyCode.Q) && !rotating && selected)
         {
             targetTransform.Rotate(transform.up, -45f);
         }
