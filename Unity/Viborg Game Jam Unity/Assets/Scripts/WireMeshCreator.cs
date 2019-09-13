@@ -9,14 +9,16 @@ namespace PathCreation.Examples
     public class WireMeshCreator : PathSceneTool
     {
         [Header("Wire settings")]
-        public float wireWidth = .4f;
+        public float wireRadius = .4f;
         public int wireSegments = 6;
+        public int stormSegments = 2;
         //[Range(0, .5f)]
         //public float thickness = .15f;
         public bool flattenSurface;
 
         [Header("Material settings")]
         public Material wireMaterial;
+        public Material stormMaterial;
         //public Material undersideMaterial;
         public float textureTiling = 1;
 
@@ -44,13 +46,16 @@ namespace PathCreation.Examples
             Vector2[] uvs = new Vector2[verts.Length];
             Vector3[] normals = new Vector3[verts.Length];
 
-            int numTris = 2 * ((path.NumPoints - 1) + ((path.isClosedLoop) ? 1 : 0 ));
-            int[] wireTriangles = new int[numTris * wireSegments];
+            int lStorm = (stormSegments > wireSegments) ? wireSegments : stormSegments;
+            int numTris = 2 * wireSegments * ((path.NumPoints - 1) + ((path.isClosedLoop) ? 1 : 0 ));
+            int[] stormTriangles = new int[numTris / wireSegments * stormSegments * 3];
+            int[] wireTriangles = new int[numTris * 3 - stormTriangles.Length];
             //int[] underRoadTriangles = new int[numTris * 3];
             //int[] sideOfRoadTriangles = new int[numTris * 2 * 3];
 
             int vertIndex = 0;
             int triIndex = 0;
+            int stormIndex = 0;
 
             // Vertices for a wire segment are layed out:
             // 0  1
@@ -79,70 +84,75 @@ namespace PathCreation.Examples
                     Vector3 nextAngleLeft = Quaternion.AngleAxis((360 / wireSegments * (j + 1)), path.GetTangent(iNext)) * nextUp;
 
                     // Find positions
-                    Vector3 vert0 = 
-                }
+                    Vector3 vert0 = path.GetPoint(i) + currentAngleRight * Mathf.Abs(wireRadius);
+                    //Vector3 vert1 = path.GetPoint(i) + currentAngleLeft * Mathf.Abs(wireRadius);
+                    //Vector3 vert2 = path.GetPoint(iNext) + nextAngleRight * Mathf.Abs(wireRadius);
+                    //Vector3 vert3 = path.GetPoint(iNext) + nextAngleLeft * Mathf.Abs(wireRadius);
 
-                // Find position to left and right of current path vertex
-                Vector3 vertSideA = path.GetPoint(i) - localRight * Mathf.Abs(roadWidth);
-                Vector3 vertSideB = path.GetPoint(i) + localRight * Mathf.Abs(roadWidth);
+                    int vert2Index = vertIndex + j;
+                    int vert1Index = vertIndex + ((j + 1) % wireSegments);
+                    int vert4Index = ( vertIndex + wireSegments + j ) % verts.Length;
+                    int vert3Index = ( vertIndex + wireSegments + ((j + 1) % wireSegments) ) % verts.Length;
 
-                // Add top of road vertices
-                verts[vertIndex + 0] = vertSideA;
-                verts[vertIndex + 1] = vertSideB;
-                // Add bottom of road vertices
-                verts[vertIndex + 2] = vertSideA - localUp * thickness;
-                verts[vertIndex + 3] = vertSideB - localUp * thickness;
+                    //Add current vert
+                    verts[vertIndex + j] = vert0;
 
-                // Duplicate vertices to get flat shading for sides of road
-                verts[vertIndex + 4] = verts[vertIndex + 0];
-                verts[vertIndex + 5] = verts[vertIndex + 1];
-                verts[vertIndex + 6] = verts[vertIndex + 2];
-                verts[vertIndex + 7] = verts[vertIndex + 3];
+                    //Set current normal
+                    normals[vertIndex + j] = currentAngleRight;
 
-                // Set uv on y axis to path time (0 at start of path, up to 1 at end of path)
-                uvs[vertIndex + 0] = new Vector2(0, path.times[i]);
-                uvs[vertIndex + 1] = new Vector2(1, path.times[i]);
-
-                // Top of road normals
-                normals[vertIndex + 0] = localUp;
-                normals[vertIndex + 1] = localUp;
-                // Bottom of road normals
-                normals[vertIndex + 2] = -localUp;
-                normals[vertIndex + 3] = -localUp;
-                // Sides of road normals
-                normals[vertIndex + 4] = -localRight;
-                normals[vertIndex + 5] = localRight;
-                normals[vertIndex + 6] = -localRight;
-                normals[vertIndex + 7] = localRight;
-
-                // Set triangle indices
-                if (i < path.NumPoints - 1 || path.isClosedLoop)
-                {
-                    for (int j = 0; j < triangleMap.Length; j++)
+                    //Add triangles
+                    if (j < stormSegments)
                     {
-                        roadTriangles[triIndex + j] = (vertIndex + triangleMap[j]) % verts.Length;
-                        // reverse triangle map for under road so that triangles wind the other way and are visible from underneath
-                        underRoadTriangles[triIndex + j] = (vertIndex + triangleMap[triangleMap.Length - 1 - j] + 2) % verts.Length;
+                        if (stormIndex + 6 < stormTriangles.Length)
+                        {
+                            stormTriangles[stormIndex] = vert1Index;
+                            stormTriangles[stormIndex + 1] = vert3Index;
+                            stormTriangles[stormIndex + 2] = vert2Index;
+                            stormTriangles[stormIndex + 3] = vert2Index;
+                            stormTriangles[stormIndex + 4] = vert3Index;
+                            stormTriangles[stormIndex + 5] = vert4Index;
+
+                            stormIndex += 6;
+                        }
+                    
                     }
-                    for (int j = 0; j < sidesTriangleMap.Length; j++)
+                    else
                     {
-                        sideOfRoadTriangles[triIndex * 2 + j] = (vertIndex + sidesTriangleMap[j]) % verts.Length;
+                        if (triIndex + 6 < wireTriangles.Length)
+                        {
+                            wireTriangles[triIndex] = vert1Index;
+                            wireTriangles[triIndex + 1] = vert3Index;
+                            wireTriangles[triIndex + 2] = vert2Index;
+                            wireTriangles[triIndex + 3] = vert2Index;
+                            wireTriangles[triIndex + 4] = vert3Index;
+                            wireTriangles[triIndex + 5] = vert4Index;
+
+                            triIndex += 6;
+                        }
                     }
 
+
+                    //// Set uv on y axis to path time (0 at start of path, up to 1 at end of path)
+                    //uvs[vertIndex + 0] = new Vector2(0, path.times[i]);
+                    //uvs[vertIndex + 1] = new Vector2(1, path.times[i]);
+                    
+                    // Ignore UV for now
+                    uvs[vertIndex + j] = new Vector2(0, 0);
                 }
 
-                vertIndex += 8;
-                triIndex += 6;
+                vertIndex += wireSegments;
+
+
             }
 
             mesh.Clear();
             mesh.vertices = verts;
             mesh.uv = uvs;
             mesh.normals = normals;
-            mesh.subMeshCount = 3;
-            mesh.SetTriangles(roadTriangles, 0);
-            mesh.SetTriangles(underRoadTriangles, 1);
-            mesh.SetTriangles(sideOfRoadTriangles, 2);
+            mesh.subMeshCount = 2;
+            mesh.SetTriangles(wireTriangles, 0);
+            mesh.SetTriangles(stormTriangles, 1);
+            //mesh.SetTriangles(sideOfRoadTriangles, 2);
             mesh.RecalculateBounds();
         }
 
@@ -180,9 +190,9 @@ namespace PathCreation.Examples
 
         void AssignMaterials()
         {
-            if (roadMaterial != null && undersideMaterial != null)
+            if (wireMaterial != null)
             {
-                meshRenderer.sharedMaterials = new Material[] { roadMaterial, undersideMaterial, undersideMaterial };
+                meshRenderer.sharedMaterials = new Material[] { wireMaterial, stormMaterial };
                 meshRenderer.sharedMaterials[0].mainTextureScale = new Vector3(1, textureTiling);
             }
         }
