@@ -22,10 +22,12 @@ namespace PathCreation.Examples
         //public Material undersideMaterial;
         public float textureTiling = 1;
 
+        public GameObject meshHolder;
+        //public Material _mat_off;
+        //public Material _mat_on;
+
         [SerializeField, HideInInspector]
-
-        GameObject meshHolder;
-
+  
         MeshFilter meshFilter;
         MeshRenderer meshRenderer;
         Mesh mesh;
@@ -38,6 +40,7 @@ namespace PathCreation.Examples
                 AssignMaterials();
                 CreateWireMesh();
             }
+
         }
 
         void CreateWireMesh()
@@ -178,6 +181,12 @@ namespace PathCreation.Examples
             {
                 meshHolder.gameObject.AddComponent<MeshRenderer>();
             }
+            /* if(!meshHolder.gameObject.GetComponent<WireController>())
+             {
+                 WireController comp = meshHolder.gameObject.AddComponent<WireController>();
+                 comp.mat_off = _mat_off;
+                 comp.mat_on = _mat_on;
+             }*/
 
             meshRenderer = meshHolder.GetComponent<MeshRenderer>();
             meshFilter = meshHolder.GetComponent<MeshFilter>();
@@ -186,6 +195,8 @@ namespace PathCreation.Examples
                 mesh = new Mesh();
             }
             meshFilter.sharedMesh = mesh;
+
+            
         }
 
         void AssignMaterials()

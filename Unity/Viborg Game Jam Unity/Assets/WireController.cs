@@ -7,8 +7,8 @@ using PathCreation.Examples;
 public class WireController : MonoBehaviour
 {
 
-    [SerializeField] private Material mat_off;
-    [SerializeField] private Material mat_on;
+    [SerializeField] public Material mat_off;
+    [SerializeField] public Material mat_on;
 
     private WireMeshCreator wireMeshCreator;
     
@@ -29,8 +29,8 @@ public class WireController : MonoBehaviour
 
     private void AssignTextures(Material mat)
     {
-        wireMeshCreator.stormMaterial = mat;
-        wireMeshCreator.wireMaterial = mat;
+        GetComponent<MeshRenderer>().material = mat;
+        GetComponent<MeshRenderer>().material = mat;
     }
 
 }
