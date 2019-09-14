@@ -5,15 +5,13 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
 
-    public GameObject door;
+    [SerializeField] private GameObject door;
+    [SerializeField] private Vector3 from;
+    [SerializeField] private Vector3 to;
+    [SerializeField] private float speed;
 
-    public Transform from;
-    public Transform to;
-
-    public float speed;
-    public float progress;
-
-    public bool opened;
+    private float progress;
+    [HideInInspector] public bool opened;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +26,7 @@ public class Door : MonoBehaviour
         {
             progress += speed * Time.deltaTime;
 
-            door.transform.position = Vector3.Lerp(from.position, to.position, progress);
+            door.transform.position = Vector3.Lerp(from, to, progress);
         }
     }
 }

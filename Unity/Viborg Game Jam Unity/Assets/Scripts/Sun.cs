@@ -8,7 +8,7 @@ public class Sun : MonoBehaviour
     public Transform target;
     public MirrorReflection mirrorReflection;
 
-    public Vector3 hitPos;
+    [HideInInspector] public Vector3 hitPos;
 
     public LayerMask layerMask;
 

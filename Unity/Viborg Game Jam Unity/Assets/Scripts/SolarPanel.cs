@@ -20,8 +20,6 @@ public class SolarPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sphere.SetActive(powered);
-
-        door.opened = powered;
+        if (door) { door.opened = powered; }
     }
 }
