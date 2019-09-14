@@ -18,7 +18,27 @@ public class IngameMenu : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.LoadLevel(0);
+            ingameMenu.SetActive(true);
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
+            Time.timeScale = 0;
         }
+    }
+
+    public void No()
+    {
+        ingameMenu.SetActive(false);
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        Time.timeScale = 1;
+    }
+
+    public void Yes()
+    {
+        Application.LoadLevel(0);
     }
 }
