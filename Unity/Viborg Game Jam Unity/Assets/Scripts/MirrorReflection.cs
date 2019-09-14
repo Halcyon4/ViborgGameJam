@@ -37,7 +37,7 @@ public class MirrorReflection : MonoBehaviour
 
         hitPoint = hitPos;
 
-        reflectionDirection = Vector3.Reflect(direction, transform.forward);
+        reflectionDirection = Vector3.Reflect(direction, transform.up);
 
         if(Physics.Raycast(hitPos, reflectionDirection, out hit, Mathf.Infinity, layerMask))
         {
@@ -49,7 +49,7 @@ public class MirrorReflection : MonoBehaviour
             {
                 otherHitPoint = hit.point;
 
-                mirrorReflection = hit.transform.parent.GetComponent<MirrorReflection>();
+                mirrorReflection = hit.transform.GetComponent<MirrorReflection>();
 
                 mirrorReflection.hitByLigtRay = true;
                 mirrorReflection.ReflectRay(hit.point, hit.point - hitPoint, meshGen);

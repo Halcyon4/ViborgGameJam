@@ -553,6 +553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8229842264360733990}
   - component: {fileID: 8250229352962879938}
+  - component: {fileID: 8851992884760209636}
   - component: {fileID: 8323581723073091796}
   - component: {fileID: 8293387866534340384}
   - component: {fileID: 8232528046392996020}
@@ -621,6 +622,23 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &8851992884760209636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8232528046392996022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543a2622e596e4b4fac4a015af812813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reach: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  curMirror: {fileID: 0}
 --- !u!124 &8323581723073091796
 Behaviour:
   m_ObjectHideFlags: 0
