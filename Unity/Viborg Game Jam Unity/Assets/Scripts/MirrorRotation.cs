@@ -6,6 +6,7 @@ public class MirrorRotation : MonoBehaviour
 {
 
     public float speed = 0.1f;
+    [SerializeField] float roationAmount = 22.5f;
 
     public Transform targetTransform;
 
@@ -28,7 +29,7 @@ public class MirrorRotation : MonoBehaviour
 
         outlines = gameObject.GetComponentsInChildren<cakeslice.Outline>() ;
     }
-    
+
     // Update is called once per frame
     void Update()
     {

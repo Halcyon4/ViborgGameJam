@@ -27,6 +27,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.559, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 3823122186406218468}
   - {fileID: 5780946462199464236}
   - {fileID: 5780946462352818083}
   m_Father: {fileID: 5780946463074801880}
@@ -218,7 +219,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5780946461371602998}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5780946462199464226
 MeshFilter:
@@ -299,7 +300,7 @@ Transform:
   m_LocalScale: {x: 0.1158398, y: 0.11583991, z: 0.11583991}
   m_Children: []
   m_Father: {fileID: 5780946461371602998}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0.001}
 --- !u!33 &5780946462352818087
 MeshFilter:
@@ -459,7 +460,6 @@ Transform:
   - {fileID: 5780946461371602998}
   - {fileID: 5780946461686886047}
   - {fileID: 5780946463328586409}
-  - {fileID: 3823122186406218468}
   m_Father: {fileID: 5780946462563776498}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -475,9 +475,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f771f441e57f2ba45a8e5729c3b24081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 0.5
+  roationAmount: 22.5
   targetTransform: {fileID: 5780946461687002802}
+  rotationLength: 11.25
   selected: 0
+  rotationAxis: 0
 --- !u!65 &4375238364502179792
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -545,12 +548,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6046548919052780630}
-  m_LocalRotation: {x: 0.16333356, y: -0, z: -0, w: 0.9865709}
-  m_LocalPosition: {x: 0, y: 1.617, z: -0.153}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalRotation: {x: 0.6996688, y: -0, z: -0, w: 0.7144674}
+  m_LocalPosition: {x: 0, y: 0.16361013, z: 0.0021730363}
+  m_LocalScale: {x: 0.5, y: 0.5000001, z: 0.5000001}
   m_Children: []
-  m_Father: {fileID: 5780946463074801880}
-  m_RootOrder: 3
+  m_Father: {fileID: 5780946461371602998}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 18.801, y: 0, z: 0}
 --- !u!65 &7773587244437478959
 BoxCollider:
