@@ -11,6 +11,7 @@ public class MirrorReflection : MonoBehaviour
     Vector3? otherHitPoint;
 
     MirrorReflection mirrorReflection;
+    SolarPanel solarPanel;
 
     public LayerMask layerMask;
 
@@ -53,12 +54,32 @@ public class MirrorReflection : MonoBehaviour
                 mirrorReflection = null;
                 otherHitPoint = null;
             }
+
+            if(hit.transform.tag == "SolarPanel")
+            {
+                solarPanel = hit.transform.gameObject.GetComponent<SolarPanel>();
+                solarPanel.powered = true;
+            }
+            else if(solarPanel != null)
+            {
+                solarPanel.powered = false;
+                solarPanel = null;
+            }
         }
-        else if (mirrorReflection != null)
+        else
         {
-            mirrorReflection.hitByLigtRay = false;
-            mirrorReflection = null;
-            otherHitPoint = null;
+            if (mirrorReflection != null)
+            {
+                mirrorReflection.hitByLigtRay = false;
+                mirrorReflection = null;
+                otherHitPoint = null;
+            }
+
+            if (solarPanel != null)
+            {
+                solarPanel.powered = false;
+                solarPanel = null;
+            }
         }
     }
 
