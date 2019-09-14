@@ -43,8 +43,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f771f441e57f2ba45a8e5729c3b24081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   speed: 0.1
   targetTransform: {fileID: 4823816359038589739}
   selected: 0
@@ -58,11 +58,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a11e49f233938d4395ba2ff3edffc47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   layerMask:
     serializedVersion: 2
-    m_Bits: 311
+    m_Bits: 1073742135
   hitByLigtRay: 0
 --- !u!1 &4823816359038589736
 GameObject:
