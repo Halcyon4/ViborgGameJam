@@ -92,6 +92,7 @@ public class RayMeshGenerator : MonoBehaviour
         int numTris = 2 * (wireSegments* 2) * (rayPoints.Count - 1);
         int[] stormTriangles = new int[numTris / wireSegments * stormSegments * 3];
         int[] wireTriangles = new int[numTris * 3];
+
         //int[] underRoadTriangles = new int[numTris * 3];
         //int[] sideOfRoadTriangles = new int[numTris * 2 * 3];
 
