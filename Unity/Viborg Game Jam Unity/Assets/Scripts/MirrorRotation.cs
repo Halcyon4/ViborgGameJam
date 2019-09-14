@@ -6,6 +6,7 @@ public class MirrorRotation : MonoBehaviour
 {
 
     public float speed = 0.1f;
+    [SerializeField] float roationAmount = 22.5f;
 
     public Transform targetTransform;
 
@@ -28,12 +29,12 @@ public class MirrorRotation : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E) && !rotating && selected)
         {
-            targetTransform.Rotate(transform.up, 45f);
+            targetTransform.Rotate(transform.up, roationAmount);
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && !rotating && selected)
         {
-            targetTransform.Rotate(transform.up, -45f);
+            targetTransform.Rotate(transform.up, -roationAmount);
         }
 
         if (transform.rotation != targetTransform.rotation)

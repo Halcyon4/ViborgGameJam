@@ -475,7 +475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f771f441e57f2ba45a8e5729c3b24081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 0.5
+  roationAmount: 22.5
   targetTransform: {fileID: 5780946461687002802}
   selected: 0
 --- !u!65 &4375238364502179792
