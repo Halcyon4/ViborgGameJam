@@ -22,20 +22,31 @@ public class CameraRaycast : MonoBehaviour
     {
         RaycastHit hit;
 
-        if(Physics.Raycast(transform.position, transform.forward, out hit, reach, layerMask))
+        //Clear current selected item
+        MirrorRotation curRotation;
+        if (curMirror != null)
         {
-            if(curMirror != null)
+            curRotation = curMirror.GetComponent<MirrorRotation>();
+            if (curRotation != null)
             {
-                curMirror.GetComponent<MirrorRotation>().selected = false;
+                curRotation.selected = false;
             }
+        }
 
-            curMirror = hit.transform.parent.gameObject;
-            curMirror.GetComponent<MirrorRotation>().selected = true;
+
+        if (Physics.Raycast(transform.position, transform.forward, out hit, reach, layerMask))
+        {
+            curMirror = hit.transform.gameObject;
+
+            curRotation = curMirror.GetComponent<MirrorRotation>();
+            if (curRotation != null)
+            {
+                curRotation.selected = true;
+            }
         }
         else if(curMirror != null)
         {
-            curMirror.GetComponent<MirrorRotation>().selected = false;
-            curMirror = null;
+            //Dont do anything since nothing is in view
         }
     }
 }

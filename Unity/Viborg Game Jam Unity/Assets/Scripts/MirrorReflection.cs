@@ -15,6 +15,8 @@ public class MirrorReflection : MonoBehaviour
 
     public LayerMask layerMask;
 
+    public float maxRayLength = 20;
+
     public bool hitByLigtRay;
 
     // Start is called before the first frame update
@@ -29,24 +31,28 @@ public class MirrorReflection : MonoBehaviour
         
     }
 
-    public void ReflectRay(Vector3 hitPos, Vector3 direction)
+    public void ReflectRay(Vector3 hitPos, Vector3 direction, RayMeshGenerator meshGen)
     {
         RaycastHit hit;
 
         hitPoint = hitPos;
 
-        reflectionDirection = Vector3.Reflect(direction, transform.forward);
+        reflectionDirection = Vector3.Reflect(direction, transform.up);
 
         if(Physics.Raycast(hitPos, reflectionDirection, out hit, Mathf.Infinity, layerMask))
         {
+            //Add point to mesh gen
+            meshGen.addPoint(hit.point);
+
+
             if (hit.transform.tag == "Mirror")
             {
                 otherHitPoint = hit.point;
 
-                mirrorReflection = hit.transform.parent.GetComponent<MirrorReflection>();
+                mirrorReflection = hit.transform.GetComponent<MirrorReflection>();
 
                 mirrorReflection.hitByLigtRay = true;
-                mirrorReflection.ReflectRay(hit.point, hit.point - hitPoint);
+                mirrorReflection.ReflectRay(hit.point, hit.point - hitPoint, meshGen);
             }
             else if(mirrorReflection != null)
             {
@@ -64,9 +70,13 @@ public class MirrorReflection : MonoBehaviour
             {
                 solarPanel = null;
             }
+
         }
         else
         {
+            //Add rayPoint when no hit
+            meshGen.addPoint(hitPos + reflectionDirection.normalized * maxRayLength);
+
             if (mirrorReflection != null)
             {
                 mirrorReflection.hitByLigtRay = false;
