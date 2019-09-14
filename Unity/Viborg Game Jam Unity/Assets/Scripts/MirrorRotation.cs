@@ -10,7 +10,13 @@ public class MirrorRotation : MonoBehaviour
 
     public Transform targetTransform;
 
+    public float rotationLength = 45;
+
+    private enum rotationType { up, right, forward };
+
     public bool selected;
+    [SerializeField]
+    private rotationType rotationAxis = rotationType.up;
     bool rotating;
     float rotationProgress;
 
@@ -23,18 +29,47 @@ public class MirrorRotation : MonoBehaviour
 
         outlines = gameObject.GetComponentsInChildren<cakeslice.Outline>() ;
     }
-    
+
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.E) && !rotating && selected)
         {
-            targetTransform.Rotate(transform.up, roationAmount);
+            switch (rotationAxis)
+            {
+                case rotationType.up:
+                    targetTransform.Rotate(transform.up, rotationLength);
+                    break;
+                case rotationType.right:
+                    targetTransform.Rotate(transform.right, rotationLength);
+                    break;
+                case rotationType.forward:
+                    targetTransform.Rotate(transform.forward, rotationLength);
+                    break;
+                default:
+                    targetTransform.Rotate(transform.up, rotationLength);
+                    break;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && !rotating && selected)
         {
-            targetTransform.Rotate(transform.up, -roationAmount);
+
+            switch (rotationAxis)
+            {
+                case rotationType.up:
+                    targetTransform.Rotate(transform.up, -rotationLength);
+                    break;
+                case rotationType.right:
+                    targetTransform.Rotate(transform.right, -rotationLength);
+                    break;
+                case rotationType.forward:
+                    targetTransform.Rotate(transform.forward, -rotationLength);
+                    break;
+                default:
+                    targetTransform.Rotate(transform.up, -rotationLength);
+                    break;
+            }
         }
 
         if (transform.rotation != targetTransform.rotation)

@@ -58,7 +58,7 @@ public class CharacterController : MonoBehaviour
         grounded = false;
     }
 
-    void OnCollisionStay()
+    void OnTriggerStay()
     {
         grounded = true;
     }
