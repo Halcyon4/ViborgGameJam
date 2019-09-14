@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Mirror
+  - SolarPanel
   layers:
   - Default
   - TransparentFX
@@ -15,6 +16,7 @@ TagManager:
   -
   -
   - Mirror
+<<<<<<< HEAD
   -
   -
   -
@@ -37,6 +39,31 @@ TagManager:
   -
   -
   - PostProcessing
+=======
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+>>>>>>> 85920c6... Sliding Mirrors
   m_SortingLayers:
   - name: Default
     uniqueID: 0
