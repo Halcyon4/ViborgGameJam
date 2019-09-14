@@ -13,14 +13,16 @@ public class MirrorRotation : MonoBehaviour
     bool rotating;
     float rotationProgress;
 
-    cakeslice.Outline outline;
+    cakeslice.Outline[] outlines;
 
     // Start is called before the first frame update
     void Start()
     {
-        outline = gameObject.GetComponent<cakeslice.Outline>();
-    }
+        //Find all outline child objects
 
+        outlines = gameObject.GetComponentsInChildren<cakeslice.Outline>() ;
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -48,9 +50,9 @@ public class MirrorRotation : MonoBehaviour
         }
 
         //Update outline
-        if(outline != null)
+        for(int i = 0; i < outlines.Length; i++)
         {
-            outline.enabled = selected;
+            outlines[i].enabled = selected;
         }
     }
 }
