@@ -39,6 +39,10 @@ public class IngameMenu : MonoBehaviour
 
     public void Yes()
     {
+        ingameMenu.SetActive(false);
+
+        Time.timeScale = 1;
+
         Application.LoadLevel(0);
     }
 }
