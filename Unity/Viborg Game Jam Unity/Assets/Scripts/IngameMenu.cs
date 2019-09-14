@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SolarPanel : MonoBehaviour
+public class IngameMenu : MonoBehaviour
 {
 
-    public bool powered;
-
-    public Door door;
+    public GameObject ingameMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +16,9 @@ public class SolarPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(door != null)
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
-            door.opened = powered;
+            Application.LoadLevel(0);
         }
     }
 }

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Mirror
+  - Undefined
+  - SolarPanel
   layers:
   - Default
   - TransparentFX
@@ -15,10 +17,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
+  - Mirror
   - 
   - 
   - 
