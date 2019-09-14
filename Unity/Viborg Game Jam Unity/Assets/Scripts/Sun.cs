@@ -5,6 +5,8 @@ using UnityEngine;
 public class Sun : MonoBehaviour
 {
 
+    public GameObject lightRay;
+
     public Transform target;
     public MirrorReflection mirrorReflection;
 
@@ -36,7 +38,16 @@ public class Sun : MonoBehaviour
             {
                 mirrorReflection.hitByLigtRay = false;
             }
+
+            RenderLightRay(transform.position, hit.point);
         }
+    }
+
+    void RenderLightRay(Vector3 start, Vector3 end)
+    {
+        lightRay.SetActive(true);
+
+        lightRay.transform.position = start + (end - start) / 2;
     }
 
     private void OnDrawGizmos()
