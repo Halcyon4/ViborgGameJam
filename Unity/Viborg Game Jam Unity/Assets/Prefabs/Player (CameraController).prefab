@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7881334203120604054}
   - component: {fileID: 3995412965339360245}
-  m_Layer: 31
+  m_Layer: 8
   m_Name: Outline Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 8230665007755683984}
   - component: {fileID: 8230665007755683985}
   - component: {fileID: 8230665007755683996}
+  - component: {fileID: 1838119720}
   m_Layer: 8
   m_Name: Player (CameraController)
   m_TagString: Untagged
@@ -303,7 +304,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8230665007755683997}
-  m_LocalRotation: {x: -0, y: -0.00000044703478, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -617,6 +618,19 @@ MonoBehaviour:
   maxVelocityChange: 6
   canJump: 1
   jumpHeight: 1.5
+--- !u!65 &1838119720
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8230665007755683997}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!1 &8232528046392996022
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,9 +645,8 @@ GameObject:
   - component: {fileID: 8323581723073091796}
   - component: {fileID: 8293387866534340384}
   - component: {fileID: 8232528046392996020}
-  - component: {fileID: 8232528046392996021}
   - component: {fileID: 1548463279916083771}
-  m_Layer: 31
+  m_Layer: 8
   m_Name: PrimaryCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -746,7 +759,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 8229842264360733990}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 2147483648
+    m_Bits: 256
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 1
@@ -791,23 +804,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!114 &8232528046392996021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8232528046392996022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 7f06a4fb0ad8eae4c937ee16306b10f7, type: 2}
-  isGlobal: 0
-  blendDistance: 0
-  weight: 1
-  priority: 0
 --- !u!114 &1548463279916083771
 MonoBehaviour:
   m_ObjectHideFlags: 0
