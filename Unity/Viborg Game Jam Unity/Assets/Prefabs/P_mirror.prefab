@@ -478,7 +478,9 @@ MonoBehaviour:
   speed: 0.5
   roationAmount: 22.5
   targetTransform: {fileID: 5780946461687002802}
+  rotationLength: 11.25
   selected: 0
+  rotationAxis: 0
 --- !u!65 &4375238364502179792
 BoxCollider:
   m_ObjectHideFlags: 0
