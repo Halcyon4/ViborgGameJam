@@ -37,15 +37,19 @@ public class RayMeshGenerator : MonoBehaviour
         UpdateMesh();
     }
 
+    public List<Vector3> GetRayPoints()
+    {
+        return rayPoints;
+    }
     public void addPoint(Vector3 newPoint)
     {
         rayPoints.Add(newPoint);
-        UpdateMesh();
+        //UpdateMesh();
     }
     public void setPoints(List<Vector3> points)
     {
         rayPoints = points;
-        UpdateMesh();
+        //UpdateMesh();
     }
     public void setPoints(Vector3[] points)
     {
@@ -54,10 +58,17 @@ public class RayMeshGenerator : MonoBehaviour
         {
             rayPoints.Add(points[i]);
         }
-        UpdateMesh();
+        //UpdateMesh();
     }
-
-    private void UpdateMesh()
+    public void clearPoints()
+    {
+        rayPoints.RemoveAll(allTrue);
+    }
+    private static bool allTrue(Vector3 v)
+    {
+        return true;
+    }
+    public void UpdateMesh()
     {
         if (rayPoints.Count > 1)
         {
@@ -73,20 +84,19 @@ public class RayMeshGenerator : MonoBehaviour
 
     void CreateWireMesh()
     {
-        Vector3[] verts = new Vector3[rayPoints.Count * wireSegments * 2];
+        Vector3[] verts = new Vector3[(rayPoints.Count - 1) * wireSegments * 2];
         Vector2[] uvs = new Vector2[verts.Length];
         Vector3[] normals = new Vector3[verts.Length];
 
         int lStorm = (stormSegments > wireSegments) ? wireSegments : stormSegments;
-        int numTris = 2 * wireSegments * (rayPoints.Count - 1);
+        int numTris = 2 * (wireSegments* 2) * (rayPoints.Count - 1);
         int[] stormTriangles = new int[numTris / wireSegments * stormSegments * 3];
-        int[] wireTriangles = new int[numTris * 3 - stormTriangles.Length];
+        int[] wireTriangles = new int[numTris * 3];
         //int[] underRoadTriangles = new int[numTris * 3];
         //int[] sideOfRoadTriangles = new int[numTris * 2 * 3];
 
         int vertIndex = 0;
         int triIndex = 0;
-        int stormIndex = 0;
 
         // Vertices for a wire segment are layed out:
         // 0  1
