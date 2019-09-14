@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1073742135
   hitByLigtRay: 0
 --- !u!1 &4823816359038589736
 GameObject:
