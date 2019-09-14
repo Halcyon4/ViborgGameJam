@@ -62,7 +62,6 @@ public class MirrorReflection : MonoBehaviour
             }
             else if(solarPanel != null)
             {
-                solarPanel.powered = false;
                 solarPanel = null;
             }
         }
@@ -77,7 +76,6 @@ public class MirrorReflection : MonoBehaviour
 
             if (solarPanel != null)
             {
-                solarPanel.powered = false;
                 solarPanel = null;
             }
         }

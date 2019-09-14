@@ -9,15 +9,19 @@ public class SolarPanel : MonoBehaviour
 
     //public GameObject sphere;
 
+    public Door door;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if()sphere.SetActive(powered);
+        sphere.SetActive(powered);
+
+        door.opened = powered;
     }
 }
