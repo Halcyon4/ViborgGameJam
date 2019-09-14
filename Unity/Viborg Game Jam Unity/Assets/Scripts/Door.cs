@@ -26,7 +26,7 @@ public class Door : MonoBehaviour
         {
             progress += speed * Time.deltaTime;
 
-            door.transform.position = Vector3.Lerp(from, to, progress);
+            door.transform.position = Vector3.Lerp(new Vector3(0,from.y,0), new Vector3(0, to.y, 0), progress);
         }
     }
 }
