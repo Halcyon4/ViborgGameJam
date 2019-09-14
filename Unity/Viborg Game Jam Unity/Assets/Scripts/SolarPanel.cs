@@ -7,7 +7,7 @@ public class SolarPanel : MonoBehaviour
 
     public bool powered;
 
-    public GameObject sphere;
+    //public GameObject sphere;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,6 @@ public class SolarPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sphere.SetActive(powered);
+        //if()sphere.SetActive(powered);
     }
 }
